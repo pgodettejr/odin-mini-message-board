@@ -1,0 +1,17 @@
+<form method="POST" action="/new">
+  <h2>New Message</h2>
+
+  <div class="form-col">
+    <label for="authorName" class="for">Author's Name</label>
+    <input type="text" name="authorName" id="authorName" required />
+  </div>
+
+  <div class="form-col">
+    <label for="messageText" class="for">Message</label>
+    <textarea name="messageText" id="messageText" cols="50" rows="10">Type your message here</textarea>
+  </div>
+
+  <div class="form-button">
+    <button type="button" id="submitMessage">Submit</button>
+  </div>
+</form>

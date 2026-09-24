@@ -1,0 +1,20 @@
+<html>
+  <head>
+    <title>Message Board</title>
+    <link rel="stylesheet" href="/styles.css">
+  </head>
+  <body>
+    <%# TODO - RefError: links is not defined. Commented out via EJS to try to resolve this error. %>
+    <%# include('navbar', {links: links}) %>
+
+    <%# TODO: Replace the value "added" with "new Date()" for the "added" key if we get an error message specifically related to it %>
+
+    <ul>
+      <%# TODO - TypeError: Cannot read properties of undefined (forEach). Added messages.ejs with code to resolve this error and modified index.ejs to reflect the changes but still getting this error %>
+      <% messages.forEach((message) => { %>
+        <%- include('messages/message', {user: user, text: text, added: added }); %>
+      <% }); %>
+    </ul>
+    <%- include('form') %>
+  </body>
+</html>

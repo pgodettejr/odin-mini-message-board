@@ -31,4 +31,11 @@ indexRouter.get("/", (req, res) => res.send("Read a book!"));
 //   res.send(`ID: ${indexId}`);
 // });
 
+// TODO: Delete the "res.send" code if we get an error about it conflicting with "res.redirect"
+indexRouter.post("/new", (req, res) => {
+  messages.push({ text: messageText, user: authorName, added: new Date() });
+  res.send("message sent");
+  res.redirect("/");
+});
+
 export { indexRouter };
