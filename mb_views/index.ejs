@@ -9,10 +9,19 @@
 
     <%# TODO: Replace the value "added" with "new Date()" for the "added" key if we get an error message specifically related to it %>
 
+    <%# TODO: RefError: user is not defined (in the forEach method) %>
+
     <ul>
-      <%# TODO - TypeError: Cannot read properties of undefined (forEach). Added messages.ejs with code to resolve this error and modified index.ejs to reflect the changes but still getting this error %>
+      <%# TODO - TypeError: Cannot read properties of undefined (forEach) %>
+      
+      <%# ATTEMPT 1: Added messages.ejs with code to resolve this error and modified index.ejs to reflect the changes but still getting this error %>
+
+      <%# ATTEMPT 2: Added "indexRouter" to dot notation on the forEach method (indexRouter.messages.forEach) but got the same error saying indexRouter isn't defined %>
+
+      <%# ATTEMPT 3: Removed "indexRouter" from dot notation on the forEach method then included the res.render code from the app.get method in the index router file (indexRouter.get) but we're back at the original TypeError above %>
+
       <% messages.forEach((message) => { %>
-        <%- include('messages/message', {user: user, text: text, added: added }); %>
+        <%- include('messages/message', { message: message }); %>
       <% }); %>
     </ul>
     <%- include('form') %>

@@ -1,6 +1,6 @@
 import { Router } from "express";
 
-const indexRouter = Router();
+const indexRouter = Router({ mergeParams: true });
 
 const messages = [
   {
@@ -25,7 +25,11 @@ const messages = [
   }
 ];
 
-indexRouter.get("/", (req, res) => res.send("Read a book!"));
+// TODO: Do we need the "/" or can it be an empty string?
+indexRouter.get("{/index}", (req, res) => {
+  res.render("index", { title: "Mini Message Board", messages: messages });
+});
+
 // indexRouter.get("/:indexId", (req, res) => {
 //   const { indexId } = req.params;
 //   res.send(`ID: ${indexId}`);
