@@ -11,6 +11,8 @@
 
     <%# TODO: RefError: user is not defined (in the forEach method) %>
 
+    <h2>Mini Message Board</h2>
+
     <ul>
       <%# TODO - TypeError: Cannot read properties of undefined (forEach) %>
       
@@ -20,10 +22,14 @@
 
       <%# ATTEMPT 3: Removed "indexRouter" from dot notation on the forEach method then included the res.render code from the app.get method in the index router file (indexRouter.get) but we're back at the original TypeError above %>
 
+      
+      <%# TODO: Add an "open" button or link next to every message to open a new page with the message details %>
+
       <% messages.forEach((message) => { %>
-        <%- include('messages/message', { message: message }); %>
+        <%- include('messages/message', { message }); %>
       <% }); %>
     </ul>
-    <%- include('form') %>
+
+    <a href="./new">Post a message</a>
   </body>
 </html>

@@ -36,9 +36,17 @@ indexRouter.get("{/index}", (req, res) => {
 // });
 
 // TODO: Delete the "res.send" code if we get an error about it conflicting with "res.redirect"
+
+// ReferenceError: messageText is not defined (when const variable for it using req.body was commented out)
+// TypeError: Cannot destructure property 'authorName' of 'req.body' as it is undefined (after turning req.body const variable back on)
+
 indexRouter.post("/new", (req, res) => {
+  // const { form } = req.params;
+  // res.send(`New Message: ${form}`);
+
+  const { messageText, authorName } = req.body;
   messages.push({ text: messageText, user: authorName, added: new Date() });
-  res.send("message sent");
+  // res.send("message sent"); // Do we need this?
   res.redirect("/");
 });
 

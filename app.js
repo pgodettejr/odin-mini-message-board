@@ -11,12 +11,21 @@ import { newMessageRouter } from "./mb_routes/newMessageRouter.js";
 // const __dirname = path.dirname(__filename);
 
 const directory = path.dirname(fileURLToPath(import.meta.url));
+const assets = path.join(directory, "mb_public");
 
 const app = express();
+
+// const submitBtn = document.getElementById('submitMessage');
 
 // EJS template settings
 app.set("views", path.join(directory, "mb_views"));
 app.set("view engine", "ejs");
+
+// Serve static assets (in our CSS)
+app.use(express.static(assets));
+
+// Express middleware that parses the form data into req.body which accesses the contents of the form and use that data
+app.use(express.urlencoded({ extended: true }));
 
 // Commented this out since the indexRouter should handle the home page rendering. This would be the route for the whole server.
 // TODO - RefError: messages is not defined. Did current dot notation fix the error or do we need to import "messages" separately from indexRouter.js?
@@ -33,10 +42,9 @@ app.set("view engine", "ejs");
 // BRANCH: See "Routes" lesson for example on how to GET all messages from a specific user (route parameters). May need to write the code in the indexRouter module for this project.
 
 app.use("/", indexRouter);
-app.use("/new", newMessageRouter);
 
-// Express middleware that parses the form data into req.body which accesses the contents of the form and use that data
-app.use(express.urlencoded({ extended: true }));
+// TODO: For the form ejs file, research possibility of writing event listener JS inside of <% %> to get the submit button to submit info to the messages array and send us back to main page
+app.use("/new", newMessageRouter);
 
 // Error catching
 app.use((err, req, res, next) => {
